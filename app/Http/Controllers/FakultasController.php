@@ -14,7 +14,7 @@ class FakultasController extends Controller
     public function index()
     {
         $fakultas = Fakultas::all();
-        $data['message'] = true;
+        $data['success'] = true;
         $data['result'] = $fakultas;
         return response()->json($data,Response::HTTP_OK);
     }
@@ -32,7 +32,18 @@ class FakultasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validate = $request->validate([
+            'nama' => 'required|unique:fakultas'
+        ]);
+
+        $result = Fakultas::create($validate);// Simpan ke Table
+        if($result){
+            $data['success'] = true;
+            $data['message'] = 'Data fakultas berhasil disimpan';
+            $data['result'] = $result;
+            return response()->json(data: $data, status:Response::HTTP_CREATED);
+        }
+
     }
 
     /**

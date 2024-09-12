@@ -14,7 +14,7 @@ class ProdiController extends Controller
     public function index()
     {
         $prodi = prodi::with('fakultas')->get();
-        $data['message'] = true;
+        $data['success'] = true;
         $data['result'] = $prodi;
         return response()->json($data,Response::HTTP_OK);
     }
@@ -32,7 +32,21 @@ class ProdiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validate = $request->validate([
+            'nama' => 'required|unique:prodis',
+            'fakultas_id' => 'required'
+        ]);
+
+        $result = Prodis::create($validate);//simpan ke table prodis
+        if($result){
+            $data['success'] = true;
+            $data['message'] = "Data Prodi Berhasil Disimpan";
+            $data['result'] = $result;
+            return response()->json($data,
+            Response::HTTP_CREATED);
+        }
+
+
     }
 
     /**
