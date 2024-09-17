@@ -37,7 +37,7 @@ class ProdiController extends Controller
             'fakultas_id' => 'required'
         ]);
 
-        $result = Prodis::create($validate);//simpan ke table prodis
+        $result = Prodi::create($validate);//simpan ke table prodis
         if($result){
             $data['success'] = true;
             $data['message'] = "Data Prodi Berhasil Disimpan";
@@ -68,16 +68,39 @@ class ProdiController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Prodi $prodi)
+    public function update(Request $request, $id)
     {
-        //
+         $validate = $request->validate([
+            'nama' => 'required',
+            'fakultas_id' => 'required'
+        ]);
+
+         $result = Prodi::where('id', $id)->update($validate);
+        if($result){
+            $data['success'] = true;
+            $data['message'] = "data Prodi Berhasil Di Update";
+            $data['result'] = $result;
+            return response()->json($data,Response::HTTP_OK);
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Prodi $prodi)
+    public function destroy($id)
     {
-        //
+        $fakultas = Prodi::find($id);
+        if($fakultas){
+            $fakultas->delete();//hapus data berdasatkan id
+            $data['success'] = true;
+            $data['message'] = "data Prodi Berhasil Dihapus";
+            return response()->json($data, Response::HTTP_OK);
+        }
+        else{
+            $data['success'] = false;
+            $data['message'] = 'Data Prodi Tidak Di temukan';
+            return response()->json($data, Response::HTTP_NOT_FOUND);
+        }
     }
+    
 }
