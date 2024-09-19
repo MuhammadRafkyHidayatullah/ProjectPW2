@@ -18,5 +18,5 @@ Route::post('/prodi', [ProdiController::class, 'store']);
 Route::post('/mahasiswa', [mahasiswaController::class, 'store']);
 Route::patch('/fakultas/{fakultas}', [FakultasController::class,'update']);
 Route::patch('/prodi/{prodi}',[ProdiController::class,'update']);
-Route::delete('/fakultas/{fakultas}', [FakultasController::class,'destroy']);\
+Route::delete('/fakultas/{fakultas}', [FakultasController::class,'destroy']);
 Route::delete('/prodi/{prodi}', [FakultasController::class,'destroy']);
