@@ -89,7 +89,7 @@ class ProdiController extends Controller
      */
     public function destroy($id)
     {
-        $fakultas = Prodi::find($id);
+        $prodi = Prodi::find($id);
         if($fakultas){
             $fakultas->delete();//hapus data berdasatkan id
             $data['success'] = true;
