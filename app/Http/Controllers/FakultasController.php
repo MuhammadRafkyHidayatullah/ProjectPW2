@@ -51,17 +51,11 @@ class FakultasController extends Controller
      */
     public function show(Fakultas $fakultas)
     {
-        $prodi = Prodi::with('fakultas')->find($prodi);
-        if ($prodi) {
-            $data['success'] = true;
-            $data['message'] = "Data prodi berhasil ditemukan";
-            $data['result'] = $prodi;
-            return response()->json($data, Response::HTTP_OK);
-        } else {
-            $data['success'] = false;
-            $data['message'] = "Data prodi tidak ditemukan";
-            return response()->json($data, Response::HTTP_NOT_FOUND);
-        }
+         $fakultas = Fakultas::find($fakultas);
+        $data['success'] = true;
+        $data['message'] = "Detail data fakultas";
+        $data['result'] = $fakultas;
+        return response()->json($data, Response::HTTP_OK);
     }
 
     /**
