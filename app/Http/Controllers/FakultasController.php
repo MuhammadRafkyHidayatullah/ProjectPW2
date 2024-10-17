@@ -51,7 +51,7 @@ class FakultasController extends Controller
      */
     public function show($fakultas)
     {
-         $fakultas = Fakultas::find($fakultas);
+        $fakultas = Fakultas::find($fakultas);
         $data['success'] = true;
         $data['message'] = "Detail data fakultas";
         $data['result'] = $fakultas;
