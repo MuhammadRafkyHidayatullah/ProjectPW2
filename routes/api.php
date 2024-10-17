@@ -21,3 +21,4 @@ Route::patch('/prodi/{prodi}',[ProdiController::class,'update']);
 Route::delete('/fakultas/{fakultas}', [FakultasController::class,'destroy']);
 Route::delete('/prodi/{prodi}', [FakultasController::class,'destroy']);
 Route::get('/prodi/{prodi}', [ProdiController::class, 'show']);
+Route::get('/fakultas/{fakutlas}', [FakultasController::class, 'show']);
