@@ -3,6 +3,7 @@
 use App\Http\Controllers\FakultasController;
 use App\Http\Controllers\mahasiswaController;
 use App\Http\Controllers\ProdiController;
+use App\Http\Controllers\RegisterController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -23,3 +24,5 @@ Route::delete('/prodi/{prodi}', [FakultasController::class,'destroy']);
 Route::get('/prodi/{prodi}', [ProdiController::class, 'show']);
 Route::get('/fakultas/{fakutlas}', [FakultasController::class, 'show']);
 Route::get('/prodi/{prodi}', [ProdiController::class, 'show']);
+Route::post('/register', [RegisterController::class, 'register']);
+Route::post('/login', [RegisterController::class, 'login']);
